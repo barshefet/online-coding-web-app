@@ -1,8 +1,9 @@
 import React from "react";
 import "./Lobby.scss";
 import LobbyCodeBlock from "./LobbyCodeBlock/LobbyCodeBlock";
+import { setMentor } from "../../models/setMentor";
 
-const Lobby = () => {
+const Lobby = (props: setMentor) => {
   return (
     <>
       <div className="lobby-container">
@@ -11,10 +12,10 @@ const Lobby = () => {
           <h1>Choose a Code Block</h1>
         </div>
         <div className="code-container">
-          <LobbyCodeBlock />
-          <LobbyCodeBlock />
-          <LobbyCodeBlock />
-          <LobbyCodeBlock />
+          <LobbyCodeBlock setMentor={props.setMentor}/>
+          <LobbyCodeBlock setMentor={props.setMentor}/>
+          <LobbyCodeBlock setMentor={props.setMentor}/>
+          <LobbyCodeBlock setMentor={props.setMentor}/>
         </div>
       </div>
     </>
