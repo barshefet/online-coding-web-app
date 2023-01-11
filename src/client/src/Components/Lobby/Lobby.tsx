@@ -1,5 +1,6 @@
 import React from "react";
 import "./Lobby.scss";
+import LobbyCodeBlock from "./LobbyCodeBlock/LobbyCodeBlock";
 
 const Lobby = () => {
   return (
@@ -10,10 +11,10 @@ const Lobby = () => {
           <h1>Choose a Code Block</h1>
         </div>
         <div className="code-container">
-          <div className="code-block">1</div>
-          <div className="code-block">2</div>
-          <div className="code-block">3</div>
-          <div className="code-block">4</div>
+          <LobbyCodeBlock />
+          <LobbyCodeBlock />
+          <LobbyCodeBlock />
+          <LobbyCodeBlock />
         </div>
       </div>
     </>

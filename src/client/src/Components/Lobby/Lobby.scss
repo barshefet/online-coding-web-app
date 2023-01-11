@@ -13,18 +13,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 10px;
         
-
-        .code-block {
-            outline: white solid 1px;
-            background-color: #10070f;
-            margin: 10px;
-            border-radius: 9px;
-            height: 180px;
-            width: 280px;
-            &:hover{
-                scale: 1.05;
-            }
-        }
     }
 }

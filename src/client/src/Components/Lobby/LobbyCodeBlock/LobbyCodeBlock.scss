@@ -1,0 +1,27 @@
+.code-block {
+    outline: #525252 solid 1px;
+    background-color: #10070f;
+    margin: 10px;
+    border-radius: 9px;
+    height: 180px;
+    width: 300px;
+    &:hover {
+        cursor: pointer;
+        background-color: #1d0c1c;
+    }
+    .code-block-title {
+        text-align: center;
+        h3 {
+            margin: 10px;
+            
+        }
+    }
+    hr {
+        width: 85%;
+        border-color: #525252;
+    }
+    .code-snippet{
+        margin-left: 15px;
+        margin-top: 15px;
+    }
+}
