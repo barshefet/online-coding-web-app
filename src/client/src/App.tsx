@@ -1,11 +1,14 @@
-import React from 'react';
-
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Lobby from "./Components/Lobby/Lobby";
+import './App.scss'
 
 function App() {
-  
   return (
     <>
-    <div>Test</div>
+      <Routes>
+        <Route path="/" element={<Lobby />} />
+      </Routes>
     </>
   );
 }
