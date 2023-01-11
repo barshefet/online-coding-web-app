@@ -1,0 +1,30 @@
+.lobby-container {
+    display: flex;
+    gap: 200px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    .title {
+        font-size: 32px;
+    }
+    .code-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+
+        .code-block {
+            outline: white solid 1px;
+            background-color: #10070f;
+            margin: 10px;
+            border-radius: 9px;
+            height: 180px;
+            width: 280px;
+            &:hover{
+                scale: 1.05;
+            }
+        }
+    }
+}
