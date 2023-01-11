@@ -1,0 +1,18 @@
+.code-room-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .code-room-title{
+        font-size: 30px;
+    }
+    .room-code-block {
+        outline: #525252 solid 1px;
+        background-color: #10070f;
+        margin: 10px;
+        border-radius: 9px;
+        height: 600px;
+        width: 700px;
+    }
+}
