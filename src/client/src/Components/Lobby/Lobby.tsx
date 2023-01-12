@@ -1,9 +1,9 @@
 import React from "react";
 import "./Lobby.scss";
 import LobbyCodeBlock from "./LobbyCodeBlock/LobbyCodeBlock";
-import { setMentor } from "../../models/setMentor";
+import { Mentor } from "../../models/mentor";
 
-const Lobby = (props: setMentor) => {
+const Lobby = (props: Partial<Mentor>) => {
   return (
     <>
       <div className="lobby-container">

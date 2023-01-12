@@ -2,9 +2,9 @@ import React from "react";
 import "./LobbyCodeBlock.scss";
 import { socket } from "../../../service/socket";
 import { useNavigate } from "react-router-dom";
-import { setMentor } from "../../../models/setMentor";
+import { Mentor } from "../../../models/mentor";
 
-const LobbyCodeBlock = (props: setMentor) => {
+const LobbyCodeBlock = (props: Partial<Mentor>) => {
   const navigate = useNavigate();
 
   const joinRoom = () => {
@@ -12,7 +12,7 @@ const LobbyCodeBlock = (props: setMentor) => {
   };
 
   socket.on("room-aproved", (isMentor) => {
-    props.setMentor(isMentor)
+    props.setMentor!(isMentor)
     navigate("/code-room");
   });
 

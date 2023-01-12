@@ -3,15 +3,15 @@ import { Routes, Route } from "react-router-dom";
 import Lobby from "./Components/Lobby/Lobby";
 import CodeRoom from "./Components/CodeRoom/CodeRoom";
 import "./App.scss";
-import { BlobOptions } from "buffer";
 
 function App() {
-  const [mentor, setMentor] = useState(false) 
+  const [mentor, setMentor] = useState(false)
+  const [value, setValue] = useState('') 
   return (
     <>
       <Routes>
         <Route path="/" element={<Lobby setMentor={setMentor}/>} />
-        <Route path="/code-room" element={<CodeRoom mentor={mentor}/>}/>
+        <Route path="/code-room" element={<CodeRoom mentor={mentor} value={value} setValue={setValue} />}/>
       </Routes>
     </>
   );

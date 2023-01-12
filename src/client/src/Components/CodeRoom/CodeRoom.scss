@@ -8,11 +8,28 @@
         font-size: 30px;
     }
     .room-code-block {
-        outline: #525252 solid 1px;
-        background-color: #10070f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 10px;
         border-radius: 9px;
         height: 600px;
-        width: 700px;
+        width: 750px;
+    }
+}
+.return-button{
+    position: fixed;
+    top: 0;
+    left: 0;
+    img{
+        height: 150px;
+        transform: scaleY(-1);
+        &:hover{
+            scale: 1.1;
+            cursor: pointer;
+        }
+        &:active{
+            scale: 1;
+        }
     }
 }
