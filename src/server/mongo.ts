@@ -22,7 +22,7 @@ export const connect = async () => {
   }
 };
 
-export const getCodeBlocks = async () => {
+export const getAllCodeBlocks = async () => {
   try {
     const collection = await client.db("CodeBlocks").collection("CodeBlocks");
     let allCodeBlocks = await collection.find().toArray();
@@ -31,3 +31,13 @@ export const getCodeBlocks = async () => {
     console.error(error);
   }
 };
+
+export const getCodeBlock = async (codeBlockId: string) => {
+    try {
+        const collection = await client.db("CodeBlocks").collection("CodeBlocks");
+        let codeBlock = await collection.findOne({id : codeBlockId});
+        return codeBlock;
+      } catch (error) {
+        console.error(error);
+      }
+}

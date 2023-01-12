@@ -4,7 +4,7 @@ import http from "http";
 import cors from "cors";
 import { json } from "body-parser";
 import { Server } from "socket.io";
-import { connect, getCodeBlocks } from "./mongo";
+import { connect, getAllCodeBlocks, getCodeBlock } from "./mongo";
 
 const app: Express = express();
 
@@ -17,34 +17,34 @@ app.use(cors());
 app.use(json());
 app.use(express.static(root));
 
-connect()
+connect();
 
 const io = new Server(server, { cors: { origin: "http://localhost:3000" } });
 
 io.on("connection", (socket) => {
   console.log(`a user with the socket Id: ${socket.id} is connected`);
 
-  socket.on("join-room", (roomId: string) => {
+  socket.on("join-room", async (roomId: string) => {
     socket.join(roomId);
+    let codeBlock = await getCodeBlock;
     let clients = io.sockets.adapter.rooms.get(roomId)?.size;
     if (clients === 2) {
       io.to(socket.id).emit("room-aproved", false);
-    } else if (clients === 1) {
+      io.to(socket.id).emit("first-update", await codeBlock);
+    } else {
       io.to(socket.id).emit("room-aproved", true);
-    } else if (clients! >= 2) {
-      socket.leave(roomId);
-      io.to(socket.id).emit("room-full");
+      io.to(socket.id).emit("first-update", await codeBlock);
     }
   });
 
-  socket.on("code-update", (msg: string) => {
-    console.log(msg);
-    io.to("1").emit("update", msg);
+  socket.on("code-update", (msg: string, roomId: string) => {
+    // console.log(msg);
+    io.to(roomId).emit("update", msg);
   });
 });
 
 app.get("/code-blocks", async (_req, res) => {
-  res.send(await getCodeBlocks());
+  res.send(await getAllCodeBlocks());
 });
 
 app.get("*", (_req, res) => {

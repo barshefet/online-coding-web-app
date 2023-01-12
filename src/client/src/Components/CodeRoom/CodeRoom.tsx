@@ -1,17 +1,35 @@
 //TODO: return button with socket disconection
 
-import React from "react";
+import React, { useState } from "react";
 import CodeBlock from "./CodeBlock/CodeBlock";
 import "./CodeRoom.scss";
-import { Code } from "../../models/Code";
 import { useNavigate } from "react-router-dom";
+import { socket } from "../../service/socket";
+import { codeBlockData } from "../../models/codeBlockData";
+import { Mentor } from "../../models/mentor";
 
-const CodeRoom = (props: Code) => {
+const CodeRoom = (props: Partial<Mentor>) => {
+  const [title, setTitle] = useState("");
+  const [solution, setSolution] = useState("");
+  const [value, setValue] = useState("");
+  const [id, setId] = useState("")
+
+  socket.on("first-update", (data: codeBlockData) => {
+    setTitle(data.title);
+    setValue(data.code);
+    setSolution(data.solution);
+    setId(data.id)
+    console.log(data)
+  });
+
+  socket.on("update", (msg: string) => {
+    setValue(msg);
+  });
 
   const navigate = useNavigate();
 
   const returnToLobby = () => {
-    navigate('/')
+    navigate("/");
     //TODO: disconnect
   };
 
@@ -19,13 +37,14 @@ const CodeRoom = (props: Code) => {
     <>
       <div className="code-room-container">
         <div className="code-room-title">
-          <h1>Code block number 1</h1>
+          <h1>{title}</h1>
         </div>
         <div className="room-code-block">
           <CodeBlock
+            id = {id}
             mentor={props.mentor}
-            value={props.value}
-            setValue={props.setValue}
+            code={value}
+            setCode={setValue}
           />
         </div>
       </div>

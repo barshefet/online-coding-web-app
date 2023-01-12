@@ -3,22 +3,24 @@ import "./CodeBlock.scss";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
-import { Code } from "../../../models/Code";
 import { socket } from "../../../service/socket";
+import { codeBlockData } from "../../../models/codeBlockData";
+import { Editor } from "../../../models/editor";
 
-const CodeBlock = (props: Code) => {
+const CodeBlock = (props: Editor) => {
   const onChange = (data: string) => {
-    props.setValue(data);
-    socket.emit("code-update", data)
+    props.setCode(data);
+    socket.emit("code-update", data, props.id);
     console.log(data);
   };
+
   return (
     <>
       <CodeMirror
         className="room-code-block-editor"
         theme={vscodeDark}
         extensions={[javascript({ jsx: true })]}
-        value={props.value}
+        value={props.code}
         onChange={(data) => onChange(data)}
         readOnly={props.mentor}
       />

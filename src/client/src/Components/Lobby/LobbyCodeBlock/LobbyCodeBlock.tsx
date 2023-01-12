@@ -1,34 +1,21 @@
 import React from "react";
 import "./LobbyCodeBlock.scss";
 import { socket } from "../../../service/socket";
-import { useNavigate } from "react-router-dom";
-import { Mentor } from "../../../models/mentor";
+import { codeBlockData } from "../../../models/codeBlockData";
 
-const LobbyCodeBlock = (props: Partial<Mentor>) => {
-  const navigate = useNavigate();
-
+const LobbyCodeBlock = (props: Partial<codeBlockData>) => {
   const joinRoom = () => {
-    socket.emit("join-room", "1");
+    socket.emit("join-room", props.id);
   };
-
-  socket.on("room-aproved", (isMentor) => {
-    props.setMentor!(isMentor);
-    navigate("/code-room");
-  });
-
-  socket.on("room-full", () => {
-    //TODO: popup there is already a mentor and a student in this room
-    console.log("room is full");
-  });
 
   return (
     <>
       <div className="code-block" onClick={joinRoom}>
         <div className="code-block-title">
-          <h3>async something</h3>
+          <h3>{props.title}</h3>
         </div>
         <hr />
-        <div className="code-snippet">{`const func = (x) = > {}`}</div>
+        <div className="code-snippet">{props.code}</div>
       </div>
     </>
   );
