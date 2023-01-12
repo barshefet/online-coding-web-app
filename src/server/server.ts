@@ -4,7 +4,7 @@ import http from "http";
 import cors from "cors";
 import { json } from "body-parser";
 import { Server } from "socket.io";
-import { connect } from "./mongo";
+import { connect, getCodeBlocks } from "./mongo";
 
 const app: Express = express();
 
@@ -43,9 +43,8 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/data", (_req, res) => {
-  console.log("Processing /data");
-  res.send({ message: "Hello world" });
+app.get("/code-blocks", async (_req, res) => {
+  res.send(await getCodeBlocks());
 });
 
 app.get("*", (_req, res) => {

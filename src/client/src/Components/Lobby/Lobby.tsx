@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Lobby.scss";
 import LobbyCodeBlock from "./LobbyCodeBlock/LobbyCodeBlock";
 import { Mentor } from "../../models/mentor";
 
 const Lobby = (props: Partial<Mentor>) => {
+
+
+  
+  useEffect(()=>{
+    fetch("http://localhost:4000/code-blocks")
+    .then(res => res.json())
+    .then(data => console.log(data))
+  },[])
+  
   return (
     <>
       <div className="lobby-container">
