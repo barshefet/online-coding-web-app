@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { Mentor } from "../../../models/mentor";
 
 const LobbyCodeBlock = (props: Partial<Mentor>) => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const joinRoom = () => {
-    socket.emit("join-room", 1);
+    socket.emit("join-room", "1");
   };
 
   socket.on("room-aproved", (isMentor) => {
-    props.setMentor!(isMentor)
+    props.setMentor!(isMentor);
     navigate("/code-room");
   });
 

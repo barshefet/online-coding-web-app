@@ -4,6 +4,7 @@ import http from "http";
 import cors from "cors";
 import { json } from "body-parser";
 import { Server } from "socket.io";
+import { connect } from "./mongo";
 
 const app: Express = express();
 
@@ -15,6 +16,8 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(json());
 app.use(express.static(root));
+
+connect()
 
 const io = new Server(server, { cors: { origin: "http://localhost:3000" } });
 
@@ -36,7 +39,7 @@ io.on("connection", (socket) => {
 
   socket.on("code-update", (msg: string) => {
     console.log(msg);
-    io.emit("update", msg);
+    io.to("1").emit("update", msg);
   });
 });
 

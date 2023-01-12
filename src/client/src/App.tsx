@@ -8,10 +8,12 @@ import { socket } from "./service/socket";
 function App() {
 
   socket.on("update", (msg: string) => {
-    setValue(msg)
-  })
+    setValue(msg);
+  });
+
   const [mentor, setMentor] = useState(false);
   const [value, setValue] = useState("");
+  
   return (
     <>
       <Routes>
