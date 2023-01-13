@@ -4,7 +4,6 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { socket } from "../../../service/socket";
-import { codeBlockData } from "../../../models/codeBlockData";
 import { Editor } from "../../../models/editor";
 
 const CodeBlock = (props: Editor) => {
