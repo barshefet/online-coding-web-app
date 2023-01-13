@@ -26,13 +26,13 @@ io.on("connection", (socket) => {
 
   socket.on("join-room", async (roomId: string) => {
     socket.join(roomId);
-    let codeBlock = await getCodeBlock;
+    let codeBlock = await getCodeBlock(roomId);
     let clients = io.sockets.adapter.rooms.get(roomId)?.size;
-    if (clients === 2) {
-      io.to(socket.id).emit("room-aproved", false);
+    if (clients === 1) {
+      io.to(socket.id).emit("room-aproved", true);
       io.to(socket.id).emit("first-update", await codeBlock);
     } else {
-      io.to(socket.id).emit("room-aproved", true);
+      io.to(socket.id).emit("room-aproved", false);
       io.to(socket.id).emit("first-update", await codeBlock);
     }
   });

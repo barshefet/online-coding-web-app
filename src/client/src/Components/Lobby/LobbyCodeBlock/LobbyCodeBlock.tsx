@@ -5,6 +5,7 @@ import { codeBlockData } from "../../../models/codeBlockData";
 
 const LobbyCodeBlock = (props: Partial<codeBlockData>) => {
   const joinRoom = () => {
+    console.log(props.id)
     socket.emit("join-room", props.id);
   };
 

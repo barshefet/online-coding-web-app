@@ -19,7 +19,6 @@ const CodeRoom = (props: Partial<Mentor>) => {
     setValue(data.code);
     setSolution(data.solution);
     setId(data.id)
-    console.log(data)
   });
 
   socket.on("update", (msg: string) => {

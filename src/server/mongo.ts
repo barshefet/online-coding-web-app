@@ -1,16 +1,12 @@
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 let USER = process.env.NAME;
 let PASSWORD = process.env.PASSWORD;
 
 const uri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.rxb57.mongodb.net/?retryWrites=true&w=majority`;
 
-const client: typeof MongoClient = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-});
+const client = new MongoClient(uri);
 
 export const connect = async () => {
   try {
@@ -33,11 +29,13 @@ export const getAllCodeBlocks = async () => {
 };
 
 export const getCodeBlock = async (codeBlockId: string) => {
-    try {
-        const collection = await client.db("CodeBlocks").collection("CodeBlocks");
-        let codeBlock = await collection.findOne({id : codeBlockId});
-        return codeBlock;
-      } catch (error) {
-        console.error(error);
-      }
-}
+  try {
+    const codeBlock = await client
+      .db("CodeBlocks")
+      .collection("CodeBlocks")
+      .findOne({ id: codeBlockId });
+    return codeBlock;
+  } catch (error) {
+    console.error(error);
+  }
+};
