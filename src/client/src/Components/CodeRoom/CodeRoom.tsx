@@ -48,6 +48,7 @@ const CodeRoom = (props: Partial<Mentor>) => {
             mentor={props.mentor}
             code={value}
             setCode={setValue}
+            solution={solution}
           />
         </div>
       </div>

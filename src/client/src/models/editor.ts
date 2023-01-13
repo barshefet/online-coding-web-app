@@ -6,4 +6,5 @@ export interface Editor {
   id: string;
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
+  solution: string;
 }
