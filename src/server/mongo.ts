@@ -1,6 +1,7 @@
 require("dotenv").config();
 import { MongoClient } from "mongodb";
 
+//getting user and password for mongoDB auth
 let USER = process.env.NAME;
 let PASSWORD = process.env.PASSWORD;
 
@@ -8,6 +9,7 @@ const uri = `mongodb+srv://${USER}:${PASSWORD}@cluster0.rxb57.mongodb.net/?retry
 
 const client = new MongoClient(uri);
 
+//Connecting to the mongoDB Atlas DB
 export const connect = async () => {
   try {
     await client.connect();
@@ -18,6 +20,7 @@ export const connect = async () => {
   }
 };
 
+//A query that returns all code blocks from the db
 export const getAllCodeBlocks = async () => {
   try {
     const collection = await client.db("CodeBlocks").collection("CodeBlocks");
@@ -28,6 +31,7 @@ export const getAllCodeBlocks = async () => {
   }
 };
 
+//A query that return a single code block ithat contains the query id
 export const getCodeBlock = async (codeBlockId: string) => {
   try {
     const codeBlock = await client
