@@ -29,6 +29,7 @@ const CodeRoom = (props: Partial<Mentor>) => {
   //The update contains only the code since everything else doesnt change
   socket.on("update", (msg: string) => {
     setValue(msg);
+    console.log(msg)
   });
 
   //The function is called when the return button is clicked. It then navigates to the Lobby page.

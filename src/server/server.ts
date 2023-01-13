@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
   //Sent from a "student" client containing a modified code string
   //The new code is dispatched to all clients who are present in the room
   socket.on("code-update", (msg: string, roomId: string) => {
-    socket.broadcast.to(roomId).emit("update", msg);
+    io.to(roomId).emit("update", msg);
   });
 
   //Request from the client for all code blocks to be sent which is responded by fetching from the db
