@@ -50,7 +50,7 @@ gulp.task('heroku-copy-non-client', () => {
     './package.json',
     './package-lock.json',
     './Procfile',
-    './dist/server/server.js',
+    './dist/server/*',
   ])
     .pipe(gulp.dest('./deploy'));
 });
