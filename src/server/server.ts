@@ -19,7 +19,7 @@ app.use(express.static(root));
 
 connect();
 
-const io = new Server(server, { cors: { origin: "http://localhost:3000" } });
+const io = new Server(server, {cors: {origin: "http://localhost:3000"}});
 
 io.on("connection", (socket) => {
   console.log(`a user with the socket Id: ${socket.id} is connected`);
@@ -39,8 +39,13 @@ io.on("connection", (socket) => {
 
   socket.on("code-update", (msg: string, roomId: string) => {
     // console.log(msg);
-    io.to(roomId).emit("update", msg);
+    // io.to(roomId).emit("update", msg);
+    socket.broadcast.to(roomId).emit("update", msg)
   });
+
+  socket.on("getAllCodeBlocks", async() => {
+    socket.emit("allCodeBlocks", await getAllCodeBlocks())
+  })
 });
 
 app.get("/code-blocks", async (_req, res) => {

@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import Lobby from "./Components/Lobby/Lobby";
 import CodeRoom from "./Components/CodeRoom/CodeRoom";
 import "./App.scss";
-import { socket } from "./service/socket";
 
 function App() {
+
+  //keeps track if the client is a mentor or a student 
   const [mentor, setMentor] = useState(false);
 
   return (

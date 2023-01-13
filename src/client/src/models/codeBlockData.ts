@@ -4,5 +4,4 @@ export interface codeBlockData {
   setCode: React.Dispatch<React.SetStateAction<string>>;
   title: string;
   solution: string;
-  //   //TODO: solved
 }

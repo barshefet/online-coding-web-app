@@ -7,8 +7,9 @@ import { socket } from "../../../service/socket";
 import { codeBlockData } from "../../../models/codeBlockData";
 
 const LobbyCodeBlock = (props: Partial<codeBlockData>) => {
+  //when the component is clicked by the client a request to join a room that matches the components id is sent to the server
   const joinRoom = () => {
-    console.log(props.id)
+    console.log(props.id);
     socket.emit("join-room", props.id);
   };
 
@@ -20,12 +21,13 @@ const LobbyCodeBlock = (props: Partial<codeBlockData>) => {
         </div>
         <hr />
         <div className="code-snippet">
-          <CodeMirror 
-          className="lobby-code-block-readonly"
-          theme={vscodeDark}
-          extensions={[javascript({ jsx: true })]}
-          value={props.code}
-          readOnly={true}
+          {/* codemirror editor */}
+          <CodeMirror
+            className="lobby-code-block-readonly"
+            theme={vscodeDark}
+            extensions={[javascript({ jsx: true })]}
+            value={props.code}
+            readOnly={true}
           />
         </div>
       </div>

@@ -7,24 +7,26 @@ import { useNavigate } from "react-router-dom";
 import { codeBlockData } from "../../models/codeBlockData";
 
 const Lobby = (props: Partial<Mentor>) => {
+  //code blocks state
   const [codeBlocks, setCodeBlocks] = useState([]);
 
   const navigate = useNavigate();
 
+  //a response from the server that uproves to navigate to code-room page and sets the mentor state accordingly
   socket.on("room-aproved", (isMentor: boolean) => {
     props.setMentor!(isMentor);
     navigate("/code-room");
   });
 
+  //when the page first loads up a request for all the code blocks is emitted to the server
   useEffect(() => {
-    fetch("http://localhost:4000/code-blocks")
-      .then((res) => res.json())
-      .then((data: []) => {
-        console.log(data);
-        setCodeBlocks(data);
-      });
+    socket.emit("getAllCodeBlocks");
   }, []);
 
+  //return from the server with an array of code blocks
+  socket.on("allCodeBlocks", (data) => {
+    setCodeBlocks(data);
+  });
   return (
     <>
       <div className="lobby-container">
