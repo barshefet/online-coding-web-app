@@ -10,12 +10,14 @@ import { Editor } from "../../../models/editor";
 import SolvedSmiley from "../SolvedSmiley/SolvedSmiley";
 
 const CodeBlock = (props: Editor) => {
+
   const [solved, setSolved] = useState(false)
   
   //When a "student" client is changing the code, it's string is emmited to all clients who attend the code room
   const onChange = (data: string) => {
     props.setCode(data);
     socket.emit("code-update", data, props.id);
+    //Determines if the block code has been solved by comparing it to the solution 
     if(data === props.solution){
       setSolved(true)
     }

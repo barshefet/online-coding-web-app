@@ -20,7 +20,7 @@ app.use(express.static(root));
 //connecting to the MongoDb Atlas db
 connect();
 
-const io = new Server(server, { cors: { origin: "http://localhost:3000" } });
+const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log(`a user with the socket Id: ${socket.id} is connected`);
